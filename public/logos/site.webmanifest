@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "ClearFlow Septic",
+    "short_name": "ClearFlow",
     "icons": [
         {
             "src": "/logos/android-chrome-192x192.png?v=20",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#065f46",
+    "background_color": "#0d1b2a",
     "display": "standalone"
 }

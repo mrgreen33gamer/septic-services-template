@@ -4,8 +4,8 @@ import styles from './styles.module.scss';
 
 interface BrandItem {
   name:     string;
-  type:     string; // 'brand' | 'cert' | 'tool'
-  icon?:    string; // emoji or short abbreviation for display
+  type:     string;
+  icon?:    string;
 }
 
 interface BrandGroup {
@@ -21,43 +21,43 @@ interface TechStackProps {
 
 const DEFAULT_GROUPS: BrandGroup[] = [
   {
-    label: 'Equipment Brands We Service',
+    label: 'Systems & Components We Service',
     items: [
-      { name: 'Carrier',     type: 'brand', icon: '❄️' },
-      { name: 'Trane',       type: 'brand', icon: '❄️' },
-      { name: 'Lennox',      type: 'brand', icon: '❄️' },
-      { name: 'Rheem',       type: 'brand', icon: '❄️' },
-      { name: 'Goodman',     type: 'brand', icon: '❄️' },
-      { name: 'York',        type: 'brand', icon: '❄️' },
-      { name: 'Daikin',      type: 'brand', icon: '❄️' },
-      { name: 'American Standard', type: 'brand', icon: '❄️' },
+      { name: 'Conventional Tanks', type: 'brand', icon: '💧' },
+      { name: 'Aerobic ATUs',       type: 'brand', icon: '💧' },
+      { name: 'Effluent Pumps',     type: 'brand', icon: '💧' },
+      { name: 'Chlorinators',       type: 'brand', icon: '💧' },
+      { name: 'Drain Fields',       type: 'brand', icon: '💧' },
+      { name: 'Spray Systems',      type: 'brand', icon: '💧' },
+      { name: 'Alarms & Controls',  type: 'brand', icon: '💧' },
+      { name: 'Distribution Boxes', type: 'brand', icon: '💧' },
     ],
   },
   {
     label: 'Certifications & Licenses',
     items: [
-      { name: 'NATE Certified',      type: 'cert', icon: '✓' },
-      { name: 'TDLR Licensed',       type: 'cert', icon: '✓' },
-      { name: 'EPA 608 Certified',   type: 'cert', icon: '✓' },
-      { name: 'Fully Insured',       type: 'cert', icon: '✓' },
+      { name: 'TCEQ-Licensed Installers', type: 'cert', icon: '✓' },
+      { name: 'Bonded & Insured',         type: 'cert', icon: '✓' },
+      { name: 'Clean Job Guarantee',      type: 'cert', icon: '✓' },
+      { name: 'Emergency Pump-Out',       type: 'cert', icon: '✓' },
     ],
   },
   {
-    label: 'System Types',
+    label: 'Service Types',
     items: [
-      { name: 'Central AC',          type: 'tool', icon: '🌡️' },
-      { name: 'Heat Pumps',          type: 'tool', icon: '🌡️' },
-      { name: 'Mini-Splits',         type: 'tool', icon: '🌡️' },
-      { name: 'Gas Furnaces',        type: 'tool', icon: '🌡️' },
-      { name: 'Duct Systems',        type: 'tool', icon: '🌡️' },
-      { name: 'Air Handlers',        type: 'tool', icon: '🌡️' },
+      { name: 'Septic Pumping',     type: 'tool', icon: '🔧' },
+      { name: 'New Installs',       type: 'tool', icon: '🔧' },
+      { name: 'Aerobic Service',    type: 'tool', icon: '🔧' },
+      { name: 'Repairs',            type: 'tool', icon: '🔧' },
+      { name: 'Drain Fields',       type: 'tool', icon: '🔧' },
+      { name: 'Inspections',        type: 'tool', icon: '🔧' },
     ],
   },
 ];
 
 const TechStack: React.FC<TechStackProps> = ({
-  title    = 'All Brands, All Systems',
-  subtitle = 'We service every major brand and system type — no brand-specific limitations, no excuses.',
+  title    = 'Licensed Work, Clean Results',
+  subtitle = 'We pump, install, repair, and maintain septic systems across Central Texas — TCEQ-licensed crews, no shortcuts on code or site care.',
   groups   = DEFAULT_GROUPS,
 }) => {
   return (
@@ -78,35 +78,26 @@ const TechStack: React.FC<TechStackProps> = ({
 
         <div className={styles.groups}>
           {groups.map((group, gi) => (
-            <div key={gi} className={styles.group}>
-              <span className={styles.groupLabel}>{group.label}</span>
-              <div className={styles.items}>
-                {group.items.map((item, ii) => (
-                  <motion.div
-                    key={ii}
-                    className={`${styles.item} ${item.type === 'cert' ? styles.itemCert : ''}`}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: '-20px' }}
-                    transition={{ delay: gi * 0.06 + ii * 0.04, duration: 0.4, ease: 'easeOut' }}
-                  >
-                    {item.type === 'cert' ? (
-                      <div className={styles.certCheck} aria-hidden="true">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                          <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                      </div>
-                    ) : (
-                      <div className={styles.itemDot} aria-hidden="true" />
-                    )}
+            <motion.div
+              key={group.label}
+              className={styles.group}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: gi * 0.08 }}
+            >
+              <h3 className={styles.groupLabel}>{group.label}</h3>
+              <div className={styles.itemGrid}>
+                {group.items.map((item) => (
+                  <div key={item.name} className={styles.item}>
+                    <span className={styles.itemIcon} aria-hidden="true">{item.icon}</span>
                     <span className={styles.itemName}>{item.name}</span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

@@ -1,35 +1,35 @@
 // src/app/contact/layout.tsx
 import type { Metadata } from 'next';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://hvac-pro-template.vercel.app';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.clearflowseptic.com';
 const url = `${BASE_URL}/contact`;
 
 export const metadata: Metadata = {
-  title: 'Contact Arctic Air HVAC | Schedule Service in Waco & Central Texas',
+  title: 'Contact ClearFlow Septic | Schedule Service in Waco & Central Texas',
   description:
-    'Contact Arctic Air HVAC to schedule AC repair, heating service, or a free estimate. Serving Waco, Hewitt, Killeen, Temple, and all of Central Texas. Call (254) 900-1234.',
+    'Contact ClearFlow Septic to schedule septic repair, spring & cable repair, or a free estimate. Serving Waco, Hewitt, Killeen, Temple, and all of Central Texas. Call (554) 870-7070.',
   keywords: [
-    'contact Arctic Air HVAC',
-    'HVAC service Waco TX',
-    'schedule AC repair Waco',
-    'HVAC estimate Central Texas',
-    'Arctic Air contact',
-    '254-900-1234',
+    'contact ClearFlow Septic',
+    'septic service Waco TX',
+    'schedule septic repair Waco',
+    'septic estimate Central Texas',
+    'ClearFlow Septic contact',
+    '554-750-1100',
   ],
   alternates: { canonical: url },
   openGraph: {
-    title: 'Contact Arctic Air HVAC | Schedule Service in Waco & Central Texas',
+    title: 'Contact ClearFlow Septic | Schedule Service in Waco & Central Texas',
     description:
-      'Call, text, or submit a request. Same-day service available. Flat-rate pricing, 1-year warranty, NATE-certified techs.',
+      'Call, text, or submit a request. Same-day service available. Flat-rate pricing, Clean Job Guarantee, TCEQ-licensed septic technicians.',
     url,
-    siteName: 'Arctic Air HVAC',
+    siteName: 'ClearFlow Septic',
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact Arctic Air HVAC | Waco & Central Texas',
-    description: 'Schedule HVAC service or get a free estimate. Call (254) 900-1234.',
+    title: 'Contact ClearFlow Septic | Waco & Central Texas',
+    description: 'Schedule septic service or get a free estimate. Call (554) 870-7070.',
   },
 };
 

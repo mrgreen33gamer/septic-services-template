@@ -1,13 +1,4 @@
-// Arctic Air HVAC — Homepage
-// Phase 2: Reshuffled component order + fresh content
-// Original order: WelcomePage → TrustBar → ServiceCards → WhatToExpect → WhyChooseUs
-//                 → ProcessTimeline → ImpactMetrics → Testimonials → GuaranteeSection
-//                 → LocalServiceAreas → FAQ → CTABanner → BlogPreview → Form
-//
-// New order:      WelcomePage → TrustBar → ImpactMetrics → ServiceCards
-//                 → WhyChooseUs → CTABanner (mid) → ProcessTimeline → Testimonials
-//                 → GuaranteeSection → LocalServiceAreas → WhatToExpect → FAQ
-//                 → BlogPreview → Form
+// ClearFlow Septic — Homepage
 "use client";
 
 import styles from "./page.module.scss";
@@ -28,292 +19,227 @@ import FAQ                from "#/PageComponents/FAQ/FAQ";
 import BlogPreviewGrid    from "#/PageComponents/BlogPreviewGrid/BlogPreviewGrid";
 
 import {
-  faFan, faFire, faWrench, faFilter, faThermometerHalf, faWind,
+  faTruck, faHouseChimney, faWater, faWrench, faSeedling, faClipboardCheck,
   faTrophy, faChartLine, faClock,
-  faBolt, faShieldHalved, faUsers,
+  faShieldHalved, faUsers,
   faHeadset, faSearch, faFileContract, faCheckCircle,
-  faFileAlt, faRotateLeft, faLock, faStar,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import Variant4 from "#/PageComponents/ContactForms/Variant4/Form";
 
 export default function HomePage() {
 
-  // ── Services ────────────────────────────────────────────────────────────────
   const services = [
     {
-      icon: faFan,
-      title: "AC Repair",
-      body: "Same-day diagnosis on all makes and models. We stock common parts on every truck — most repairs completed in one visit.",
-      link: "/services/ac-repair",
+      icon: faTruck,
+      title: "Septic Pumping",
+      body: "Scheduled and emergency septic tank pump-outs with thorough cleaning and inspection. We leave lids secured and the job site clean.",
+      link: "/services/septic-pumping",
     },
     {
-      icon: faFire,
-      title: "Heating & Furnace",
-      body: "Gas furnaces, heat pumps, dual-fuel systems — repaired fast with a full CO safety inspection on every heating call.",
-      link: "/services/heating",
+      icon: faHouseChimney,
+      title: "New Septic Install",
+      body: "Conventional and engineered septic system design and installation for new construction and full replacements across Central Texas.",
+      link: "/services/septic-install",
+    },
+    {
+      icon: faWater,
+      title: "Aerobic Systems",
+      body: "Aerobic treatment unit install, service, chlorination, and maintenance so your ATU stays in compliance and running right.",
+      link: "/services/aerobic-systems",
     },
     {
       icon: faWrench,
-      title: "New Installation",
-      body: "Right-sized system selection, clean installation, full commissioning. We never upsell equipment you don't need.",
-      link: "/services/installation",
+      title: "Septic Repair",
+      body: "Tank leaks, baffles, pumps, alarms, and distribution issues diagnosed and fixed with flat-rate written quotes.",
+      link: "/services/septic-repair",
     },
     {
-      icon: faFilter,
-      title: "Duct Cleaning",
-      body: "Full system clean and sanitize — removes years of buildup, improves airflow, and makes a real difference for allergy sufferers.",
-      link: "/services/duct-cleaning",
+      icon: faSeedling,
+      title: "Drain Field Repair",
+      body: "Saturated, clogged, or failing drain fields restored or replaced with solutions sized for your soil and usage.",
+      link: "/services/drain-field",
     },
     {
-      icon: faThermometerHalf,
-      title: "Maintenance Plans",
-      body: "Two tune-ups per year, 15% off repairs, priority emergency scheduling. Month-to-month — cancel anytime.",
-      link: "/services/maintenance",
-    },
-    {
-      icon: faWind,
-      title: "Indoor Air Quality",
-      body: "UV purifiers, whole-home humidifiers, HEPA-grade filtration. Breathe cleaner air in every room of your home.",
-      link: "/services/indoor-air-quality",
+      icon: faClipboardCheck,
+      title: "Inspections & Maintenance",
+      body: "Real estate inspections, maintenance contracts, and preventative service to catch small issues before backups.",
+      link: "/services/inspections",
     },
   ];
 
-  // ── Impact metrics (moved up — builds trust before selling) ─────────────────
   const metrics = [
-    { icon: faTrophy,    value: 2400, label: "Homes and businesses served in Central Texas", suffix: "+", duration: 3 },
-    { icon: faClock,     value: 15,   label: "Years of local HVAC experience",               suffix: "+", duration: 2 },
-    { icon: faChartLine, value: 98,   label: "Customer satisfaction rating",                 suffix: "%", duration: 2 },
+    { icon: faTrophy,    value: 14000, label: "Systems serviced across Central Texas", suffix: "+", duration: 3 },
+    { icon: faClock,     value: 22,    label: "Years of local septic experience",      suffix: "+", duration: 2 },
+    { icon: faChartLine, value: 98,    label: "Customer satisfaction rating",          suffix: "%", duration: 2 },
   ];
 
-  // ── Why Choose Us (3 differentiators) ───────────────────────────────────────
   const whyFeatures = [
     {
-      icon: faBolt,
-      title: "Emergency Service — Any Hour",
-      description: "AC out at 11pm on a Saturday in July? We answer. Emergency dispatch is available 7 days a week, evenings included. Central Texas heat doesn't wait, and neither do we.",
+      icon: faClipboardCheck,
+      title: "Flat-Rate Written Quotes",
+      description: "You get a firm price before we open a lid or break ground. No hourly billing, no surprise add-ons mid-job.",
     },
     {
       icon: faShieldHalved,
-      title: "NATE-Certified, TDLR-Licensed",
-      description: "Every technician on our crew holds NATE certification and a valid Texas TDLR license. No unlicensed subs, no shortcuts. Your home is protected from the first call to the final invoice.",
+      title: "TCEQ-Licensed Installers",
+      description: "Every installer is TCEQ-licensed, bonded, and insured. No unlicensed freelancers on your property.",
     },
     {
       icon: faUsers,
-      title: "Locally Owned Since 2010",
-      description: "We're not a franchise. Arctic Air was founded in Waco by Mike Hawkins, a Waco native with 20+ years in the trade. Every decision is made locally, and every call is answered by someone who lives here.",
+      title: "Locally Owned Since 2004",
+      description: "We're not a franchise. ClearFlow Septic was founded in Waco by Wade Harmon. Every decision is made locally.",
     },
   ];
 
-  // ── How it works (process) ───────────────────────────────────────────────────
   const processSteps = [
     {
       number: 1,
       title: "Call or Book Online",
-      description: "Phone, text, or the form below — your choice. We'll confirm a same-day or next-day appointment that fits your schedule.",
+      description: "Phone, text, or the form below — your choice. We'll confirm a same-day or next-day slot that fits your schedule.",
       icon: faHeadset,
     },
     {
       number: 2,
-      title: "Tech Arrives On Time",
-      description: "Uniformed, background-checked tech shows up in the window we promised. Full system diagnosis — explained in plain English, not HVAC jargon.",
+      title: "We Assess On-Site",
+      description: "A TCEQ-licensed tech inspects the system, explains the issue in plain English, and shows options — not just the most expensive one.",
       icon: faSearch,
     },
     {
       number: 3,
       title: "You Get a Flat-Rate Quote",
-      description: "Written price before we touch anything. You decide — zero pressure to proceed. The quote covers parts and labor, and it never changes mid-job.",
+      description: "Written price before any work starts. You decide — zero pressure to proceed. The quote never changes mid-job.",
       icon: faFileContract,
     },
     {
       number: 4,
-      title: "Done Right, Warranted",
-      description: "Quality parts, clean worksite, 1-year parts and labor warranty on every repair. We leave when you're satisfied — not when we feel like it.",
+      title: "Done Clean, Guaranteed",
+      description: "Quality workmanship, Clean Job Guarantee, and emergency pump-out support when you need it most.",
       icon: faCheckCircle,
     },
   ];
 
-  // ── What to expect (moved lower — reinforces process detail after trust built) ─
   const expectations = [
     {
       icon: faSearch,
       title: "Honest System Assessment",
-      description: "We diagnose what's actually wrong — not what's most profitable to fix. You see the findings before we recommend anything.",
+      description: "We diagnose what's actually wrong — not what's most profitable to sell. You see the findings before we quote anything.",
     },
     {
       icon: faWrench,
-      title: "Clean, Respectful Service",
-      description: "Shoe covers on, work area protected, home left exactly as we found it. Every single visit.",
+      title: "Clean, Respectful Work",
+      description: "Driveways protected, lids secured, spoil hauled when required. Your property left better than we found it.",
     },
     {
       icon: faCheckCircle,
       title: "Upfront Flat-Rate Price",
-      description: "Written quote before any work starts. The number doesn't change when the job runs long — that's our problem, not yours.",
+      description: "Written quote before any work begins. The number doesn't change when the job runs long — that's our problem, not yours.",
     },
     {
       icon: faStar,
-      title: "Manufacturer-Quality Parts",
-      description: "We use OEM-grade parts on every repair, backed by the full 1-year warranty. No gray-market components, no shortcuts.",
+      title: "TCEQ Standards & Compliance",
+      description: "Installs and repairs completed to TCEQ requirements with documentation you can hand to inspectors or buyers.",
     },
   ];
 
-  // ── Service areas ────────────────────────────────────────────────────────────
   const localAreas = [
-    { town: "Waco",         benefit: "Home base — fastest dispatch and most available techs in the city.", badge: "Home Base" },
-    { town: "Hewitt",       benefit: "Full residential and commercial coverage. On our regular route.",     badge: "" },
-    { town: "Woodway",      benefit: "Same-day availability for Woodway homes and businesses.",             badge: "" },
-    { town: "Robinson",     benefit: "Regular service area — quick turnaround guaranteed.",                 badge: "" },
-    { town: "China Spring", benefit: "Rural coverage, no trip charge for most China Spring addresses.",     badge: "" },
-    { town: "Killeen",      benefit: "Full coverage for Killeen and Fort Cavazos area customers.",          badge: "" },
+    { town: "Waco",         benefit: "Home base — fastest scheduling and most available techs in the city.", badge: "Home Base" },
+    { town: "Hewitt",       benefit: "Full residential and commercial coverage. On our regular route.",      badge: "" },
+    { town: "Woodway",      benefit: "Regular availability for Woodway homes and properties.",               badge: "" },
+    { town: "Temple",       benefit: "Regular service area — quick turnaround guaranteed.",                  badge: "" },
+    { town: "China Spring", benefit: "Rural coverage, no trip charge for most China Spring addresses.",      badge: "" },
+    { town: "Killeen",      benefit: "Full septic service for Bell County homes, parks, and ranches.",       badge: "" },
   ];
 
-  // ── FAQ ──────────────────────────────────────────────────────────────────────
   const faq = [
     {
-      question: "How much does AC repair cost in Waco?",
-      answer: "Most repairs run $150–$650 depending on the issue. Capacitors and contactors are typically $150–$250. Refrigerant recharges run $250–$500. We always provide a flat-rate written quote before starting — the diagnostic fee is waived when you proceed.",
+      question: "How often should I pump my septic tank in Central Texas?",
+      answer: "Most households need pumping every 3–5 years depending on tank size, occupancy, and water use. Heavy use or garbage disposals may need more frequent service. We can recommend a schedule after inspecting your system.",
     },
     {
-      question: "Do you offer emergency HVAC service?",
-      answer: "Yes — 7 days a week including evenings and weekends. In Central Texas heat, a broken AC is a genuine emergency. Call us anytime at (254) 900-1234.",
+      question: "Do you offer emergency septic pump-outs?",
+      answer: "Yes — emergency pump-out is available for backups and overflowing tanks across Waco and Central Texas. Call (254) 870-7070 anytime.",
     },
     {
-      question: "How quickly can you come out?",
-      answer: "Same-day service is available most days. Emergency calls are dispatched within 1–2 hours. We'll give you an honest ETA when you call — not a 4-hour window.",
+      question: "Are you TCEQ-licensed?",
+      answer: "Yes. ClearFlow Septic installers are TCEQ-licensed, bonded, and insured for residential and commercial septic work.",
     },
     {
-      question: "What brands do you service?",
-      answer: "All major brands — Carrier, Trane, Lennox, Rheem, Goodman, York, Daikin, and more. We install Carrier and Trane as our preferred brands for new systems.",
+      question: "What is the Clean Job Guarantee?",
+      answer: "We leave every job site clean — lids secured, access clear, and property protected. Workmanship is backed for 24 months; if our work fails, we make it right.",
     },
     {
-      question: "Are you licensed and insured in Texas?",
-      answer: "Yes — fully licensed by the Texas Department of Licensing and Regulation (TDLR), bonded, and insured. All technicians are NATE-certified. License number available on request.",
+      question: "Do you install aerobic systems?",
+      answer: "Yes — full ATU installation, service, chlorination, and maintenance for properties that require aerobic treatment.",
     },
     {
-      question: "Do you offer financing for new systems?",
-      answer: "Yes — flexible financing with approved credit, including 0% interest options for qualifying homeowners. Ask us when you get your quote.",
+      question: "Can you inspect a septic system for a home sale?",
+      answer: "Yes. We provide real estate septic inspections with clear written findings for buyers, sellers, and agents across Central Texas.",
     },
-  ];
-
-  // ── TrustBar badges (HVAC-specific) ─────────────────────────────────────────
-  const trustBadges = [
-    { icon: faStar,          label: "5.0 Google Rating",    sub: "200+ Reviews" },
-    { icon: faShieldHalved,  label: "TDLR Licensed",        sub: "Texas Certified" },
-    { icon: faTrophy,        label: "NATE Certified",       sub: "All Technicians" },
-    { icon: faClock,         label: "Same-Day Service",     sub: "7 Days a Week" },
-    { icon: faBolt,          label: "Emergency Available",  sub: "Evenings & Weekends" },
-    { icon: faFileAlt,       label: "Flat-Rate Pricing",    sub: "No Surprises" },
-    { icon: faRotateLeft,    label: "1-Year Warranty",      sub: "Parts & Labor" },
-    { icon: faLock,          label: "No Contracts",         sub: "Month-to-Month" },
-    { icon: faWrench,        label: "All Brands Serviced",  sub: "Any Make & Model" },
-    { icon: faUsers,         label: "Locally Owned",        sub: "Since 2010" },
   ];
 
   return (
     <main className={styles.pageWrapper}>
-
-      {/* 1. Hero */}
       <WelcomePage />
 
-      {/* 2. Scrolling trust strip — immediately after hero */}
-      <TrustBar
-        headline="Waco's trusted HVAC company — licensed, insured, and warrantied on every job"
-      />
+      <TrustBar headline="14,000+ Central Texas systems serviced by ClearFlow Septic" />
 
-      {/* 3. Impact metrics — build credibility before pitching services */}
       <div className={styles.section}>
-        <ImpactMetrics
-          title="Numbers That Speak for Us"
-          metrics={metrics}
-          cityName="Waco"
-        />
+        <ImpactMetrics metrics={metrics} cityName="Waco" />
       </div>
 
-      {/* 4. Services grid */}
       <div className={styles.section}>
         <ServiceCardComponent
-          heading="Complete HVAC Services for Your Home"
+          heading="Septic Services for Waco & Central Texas"
+          subheading="From emergency pump-outs to new installs and aerobic systems — ClearFlow handles it all, priced upfront."
           cards={services}
         />
       </div>
 
-      {/* 5. Why Choose Us */}
       <div className={styles.section}>
-        <WhyChooseUs
-          cityName="Waco"
-          features={whyFeatures}
-          title="What Makes Arctic Air Different"
-        />
+        <WhyChooseUs cityName="Waco" features={whyFeatures} title="Why Homeowners Choose ClearFlow" />
       </div>
 
-      {/* 14. Contact form — final conversion point */}
-      <div className={styles.section}>
-        <Variant4
-          title="Request Service or a Free Quote"
-          cityName="Waco"
-          slug="/"
-          spot="homepage-contact-form"
-          formVariant={2}
-        />
-      </div>
-
-      {/* 7. How it works — process after the CTA so urgency is set */}
       <div className={styles.section}>
         <ProcessTimeline steps={processSteps} />
       </div>
 
-      {/* 8. Social proof — reviews before the guarantee promise */}
+      <div className={styles.section}>
+        <WhatToExpect expectations={expectations} />
+      </div>
+
       <div className={styles.section}>
         <Testimonials testimonials={reviews} />
       </div>
 
-      {/* 9. Guarantee — peer validation already done, now make the promise */}
       <div className={styles.section}>
         <GuaranteeSection />
       </div>
 
-      {/* 6. Mid-page CTA — emergency hook before process details */}
-      <CTABanner
-        headline="AC Out or Heat Down? Call Us Right Now."
-        subline="Same-day and emergency service across Waco, Hewitt, Woodway, Robinson, and all of Central Texas. Flat-rate pricing. 1-year warranty."
-        primaryText="Call (254) 900-1234"
-        primaryLink="tel:+12549001234"
-        secondaryText="Book Online"
-        secondaryLink="/contact"
-      />
-
-
-      {/* 10. Service areas */}
       <div className={styles.section}>
-        <LocalServiceAreas
-          cityName="Waco"
-          areas={localAreas}
-          servicePath=""
-          title="Serving All of Central Texas"
-        />
+        <LocalServiceAreas cityName="Waco" areas={localAreas} title="Serving Waco & Central Texas" />
       </div>
 
-      {/* 11. What to expect (detail reassurance — lower in page) */}
       <div className={styles.section}>
-        <WhatToExpect
-          sectionTitle="Every Service Call, Every Time"
-          expectations={expectations}
-        />
+        <FAQ cityName="Waco" faq={faq} title="Septic Service FAQs" />
       </div>
 
-      {/* 12. FAQ */}
-      <div className={styles.section}>
-        <FAQ
-          cityName="Waco"
-          faq={faq}
-          title="HVAC Questions — Answered Straight"
-        />
-      </div>
-
-      {/* 13. Blog preview — educational content before the final form */}
       <div className={styles.section}>
         <BlogPreviewGrid />
       </div>
 
+      <div className={styles.section}>
+        <Variant4 title="Request Service or a Free Quote" cityName="Waco" slug="/" spot="home-form" formVariant={2} />
+      </div>
+
+      <CTABanner
+        headline="Need Septic Service Today?"
+        subline="Same-day pump-outs available. Flat-rate pricing. Clean Job Guarantee · Emergency pump-out available."
+        primaryText="Call (254) 870-7070"
+        primaryLink="tel:+12548707070"
+        secondaryText="Book Online"
+        secondaryLink="/contact"
+      />
     </main>
   );
 }

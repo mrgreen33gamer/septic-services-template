@@ -23,23 +23,23 @@ const AboutStory: React.FC<AboutStoryProps> = ({ cityName }) => {
         <div className={styles.storyBody}>
           <div className={styles.storyPull}>
             <p className={styles.pullQuote}>
-              "We started Arctic Air because we were tired of watching homeowners get ripped off by fly-by-night HVAC contractors."
+              "We started ClearFlow Septic because we were tired of watching homeowners get ripped off by fly-by-night septic contractors."
             </p>
             <div className={styles.pullAttrib}>
-              <span className={styles.pullName}>— Mike Hawkins</span>
-              <span className={styles.pullTitle}>Founder, Arctic Air HVAC</span>
+              <span className={styles.pullName}>— Wade Harmon</span>
+              <span className={styles.pullTitle}>Founder, ClearFlow Septic</span>
             </div>
           </div>
 
           <div className={styles.storyText}>
             <p className={styles.storyParagraph}>
-              Founded in 2010 in Waco, TX, Arctic Air HVAC started with one truck and one principle:
+              Founded in 2004 in Waco, TX, ClearFlow Septic started with one truck and one principle:
               give homeowners the straight story about their system, charge a fair price, and back the
               work with a real warranty. No hourly billing surprises, no upsell pressure, no contracts.
             </p>
             <p className={styles.storyParagraph}>
               Today we proudly serve <strong>{cityName}</strong> and every surrounding community —
-              from China Spring to Killeen — with a crew of NATE-certified, TDLR-licensed technicians
+              from China Spring to Killeen — with a crew of TCEQ-licensed, TCEQ-licensed technicians
               who live and work right here in Central Texas.
             </p>
 
