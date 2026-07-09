@@ -255,3 +255,20 @@
 }
 
 /* end identity layer */
+
+/* === HEADER PATTERN UNIQUENESS — septic-services-template === */
+.header,
+.shell,
+.bar,
+.navShell,
+.root {
+  // best-effort: classes vary; also target common wrappers
+}
+
+.header {
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 48px, rgba($white, 0.03) 48px, rgba($white, 0.03) 49px) !important;
+  border-bottom: none !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+/* end header pattern */

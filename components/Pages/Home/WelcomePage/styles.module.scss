@@ -389,3 +389,74 @@
 }
 
 /* end identity layer */
+
+/* === HERO PATTERN UNIQUENESS — septic-services-template === */
+.hero {
+  &::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: linear-gradient(rgba($white, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba($white, 0.03) 1px, transparent 1px) !important;
+    background-size: 28px 28px !important;
+    opacity: 0.81 !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+  }
+
+  &::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background-image: radial-gradient(ellipse 50% 40% at 23% 15%, rgba($orange, 0.074), transparent 70%), radial-gradient(ellipse 40% 50% at 95% 58%, rgba($white, 0.03), transparent 65%) !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+  }
+}
+/* end hero pattern */
+
+/* === MAP VISUAL LANGUAGE — topo contours / property lots / teal radius === */
+.topoMap {
+  border-color: rgba(20, 184, 166, 0.3) !important;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 48%, rgba(13, 148, 136, 0.08), transparent 72%),
+    linear-gradient(180deg, rgba(15, 23, 22, 0.35) 0%, transparent 55%),
+    $obsidian !important;
+}
+
+.tealRings {
+  .ring {
+    border-color: rgba(20, 184, 166, 0.45) !important;
+    border-style: dashed !important;
+  }
+  .ring2 {
+    border-color: rgba(20, 184, 166, 0.28) !important;
+  }
+  .ring3 {
+    border-color: rgba(13, 148, 136, 0.16) !important;
+  }
+}
+
+.tealHub {
+  background: linear-gradient(145deg, #2dd4bf, #0d9488) !important;
+  box-shadow:
+    0 6px 22px rgba(13, 148, 136, 0.5),
+    0 0 0 4px rgba(20, 184, 166, 0.15) !important;
+  border-radius: 4px !important;
+  transform: rotate(0deg) !important;
+
+  svg {
+    transform: none !important;
+  }
+}
+
+.tealDot {
+  background: #14b8a6 !important;
+  box-shadow: 0 0 12px rgba(20, 184, 166, 0.55) !important;
+  border-radius: 2px !important;
+}
+
+.tealBadge {
+  border-color: rgba(20, 184, 166, 0.32) !important;
+  border-radius: 4px !important;
+}
+

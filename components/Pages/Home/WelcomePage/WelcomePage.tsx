@@ -1,7 +1,4 @@
-// _archetype-library/hero-c-map-anchored/Component.tsx
-//
-// Hero C: Map-Anchored — left copy, right pure CSS/SVG service-area map graphic.
-// Center pin, satellite pins at x/y %, pulsing radius rings. No Mapbox.
+// Septic Hero C — Topographic contours + dashed property-lot service radius
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -19,79 +16,99 @@ function ServiceAreaMap({
   coverageLabel?: string;
 }) {
   return (
-    <div className={styles.mapCard} role="img" aria-label={`Service area map centered on ${mapCenterLabel}`}>
-      {/* Stylized map background — grid + soft terrain blobs */}
-      <svg className={styles.mapSvg} viewBox="0 0 400 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <div
+      className={`${styles.mapCard} ${styles.topoMap}`}
+      role="img"
+      aria-label={`Service area map centered on ${mapCenterLabel}`}
+    >
+      <svg
+        className={styles.mapSvg}
+        viewBox="0 0 400 320"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+      >
         <defs>
-          <radialGradient id="mapGlow" cx="50%" cy="48%" r="55%">
-            <stop offset="0%" stopColor="rgba(249, 115, 22, 0.14)" />
-            <stop offset="55%" stopColor="rgba(249, 115, 22, 0.04)" />
+          <radialGradient id="septicGlow" cx="50%" cy="48%" r="55%">
+            <stop offset="0%" stopColor="rgba(20, 184, 166, 0.12)" />
+            <stop offset="60%" stopColor="rgba(13, 148, 136, 0.04)" />
             <stop offset="100%" stopColor="rgba(0, 0, 0, 0)" />
           </radialGradient>
-          <pattern id="mapGrid" width="28" height="28" patternUnits="userSpaceOnUse">
-            <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(255,255,255,0.045)" strokeWidth="1" />
-          </pattern>
         </defs>
 
-        <rect width="400" height="320" fill="url(#mapGrid)" />
-        <rect width="400" height="320" fill="url(#mapGlow)" />
+        <rect width="400" height="320" fill="url(#septicGlow)" />
 
-        {/* Abstract road traces */}
-        <path
-          d="M -10 80 Q 100 60 180 120 T 410 90"
-          fill="none"
-          stroke="rgba(255,255,255,0.07)"
-          strokeWidth="3"
-        />
-        <path
-          d="M 40 340 Q 120 200 220 210 T 420 160"
-          fill="none"
-          stroke="rgba(255,255,255,0.05)"
-          strokeWidth="2.5"
-        />
-        <path
-          d="M -20 200 Q 140 180 200 40 T 360 -10"
-          fill="none"
-          stroke="rgba(255,255,255,0.04)"
-          strokeWidth="2"
-        />
+        {/* Topographic contour lines */}
+        <g fill="none" stroke="rgba(148, 163, 184, 0.22)" strokeWidth="1.1">
+          <ellipse cx="200" cy="160" rx="40" ry="28" />
+          <ellipse cx="200" cy="160" rx="70" ry="48" />
+          <ellipse cx="200" cy="160" rx="105" ry="72" />
+          <ellipse cx="200" cy="160" rx="140" ry="96" />
+          <ellipse cx="200" cy="160" rx="175" ry="118" />
+        </g>
+        <g fill="none" stroke="rgba(20, 184, 166, 0.18)" strokeWidth="1">
+          <path d="M40 80 Q120 60 200 90 T360 70" />
+          <path d="M30 200 Q140 170 220 210 T380 190" />
+          <path d="M50 280 Q160 250 250 270 T390 260" />
+          <path d="M20 130 Q100 150 180 120 T340 140" />
+        </g>
 
-        {/* Soft district shapes */}
-        <ellipse cx="120" cy="90" rx="70" ry="48" fill="rgba(255,255,255,0.025)" />
-        <ellipse cx="300" cy="230" rx="85" ry="55" fill="rgba(255,255,255,0.02)" />
-        <ellipse cx="280" cy="80" rx="50" ry="36" fill="rgba(249,115,22,0.04)" />
+        {/* Dashed property lots / parcels in service radius */}
+        <g fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="1.15" strokeDasharray="5 4">
+          <rect x="90" y="90" width="70" height="55" />
+          <rect x="170" y="85" width="65" height="50" />
+          <rect x="245" y="95" width="70" height="55" />
+          <rect x="80" y="160" width="75" height="60" />
+          <rect x="165" y="155" width="80" height="65" />
+          <rect x="255" y="165" width="70" height="55" />
+          <rect x="100" y="230" width="85" height="45" />
+          <rect x="200" y="235" width="90" height="40" />
+        </g>
+
+        {/* Drainfield / tank glyphs on select lots */}
+        <rect x="185" y="175" width="28" height="14" rx="2" fill="none" stroke="rgba(20, 184, 166, 0.55)" strokeWidth="1.25" />
+        <line x1="185" y1="182" x2="213" y2="182" stroke="rgba(20, 184, 166, 0.35)" strokeWidth="1" />
+        <path d="M100 115 L120 115 M110 110 L110 120" stroke="rgba(20, 184, 166, 0.4)" strokeWidth="1.2" />
+        <path d="M270 125 L290 125 M280 120 L280 130" stroke="rgba(20, 184, 166, 0.4)" strokeWidth="1.2" />
+
+        {/* Service radius dashed ring */}
+        <circle
+          cx="200"
+          cy="160"
+          r="95"
+          fill="none"
+          stroke="rgba(20, 184, 166, 0.4)"
+          strokeWidth="1.5"
+          strokeDasharray="8 6"
+        />
       </svg>
 
-      {/* Pulsing coverage rings (center) */}
-      <div className={styles.rings} aria-hidden="true">
+      <div className={`${styles.rings} ${styles.tealRings}`} aria-hidden="true">
         <span className={`${styles.ring} ${styles.ring1}`} />
         <span className={`${styles.ring} ${styles.ring2}`} />
         <span className={`${styles.ring} ${styles.ring3}`} />
       </div>
 
-      {/* Center hub pin */}
       <div className={styles.centerPin}>
-        <div className={styles.centerPinIcon}>
+        <div className={`${styles.centerPinIcon} ${styles.tealHub}`}>
           <PinIcon size={20} />
         </div>
         <span className={styles.centerLabel}>{mapCenterLabel}</span>
       </div>
 
-      {/* Satellite pins */}
       {mapPins.map((pin) => (
         <div
           key={`${pin.label}-${pin.x}-${pin.y}`}
           className={styles.satPin}
           style={{ left: `${pin.x}%`, top: `${pin.y}%` }}
         >
-          <span className={styles.satDot} />
+          <span className={`${styles.satDot} ${styles.tealDot}`} />
           <span className={styles.satLabel}>{pin.label}</span>
         </div>
       ))}
 
       {coverageLabel && (
-        <div className={styles.coverageBadge}>
-          <span className={styles.coverageDot} />
+        <div className={`${styles.coverageBadge} ${styles.tealBadge}`}>
+          <span className={`${styles.coverageDot} ${styles.tealDot}`} />
           {coverageLabel}
         </div>
       )}
@@ -100,83 +117,27 @@ function ServiceAreaMap({
 }
 
 export default function WelcomePage() {
-const badgeText = 'Waco\'s Most Trusted Septic Pros — Since 2004';
-const headlineLines = [
-  'Systems Flowing.',
-  'Jobs Done Clean.',
-];
-const headlineAccent = 'ClearFlow Septic.';
-const subheadline = 'Pumping · Install · Repair · Aerobic Systems. Flat-rate pricing. Same-day service. Clean Job Guarantee · Emergency pump-out available. Serving Waco and Central Texas with TCEQ-licensed installers.';
-const primaryCta = { label: 'Call (254) 870-7070', href: 'tel:+12548707070' };
-const secondaryCta = { label: 'Free Estimate', href: '/contact' };
-const chips = [
-  'Same-Day Service',
-  'Emergency Pump-Out',
-  'TCEQ-Licensed',
-  '15+ Yrs Local',
-  'Clean Job Guarantee',
-];
-const stats = [
-  {
-    "value": "500+",
-    "label": "Jobs Done"
-  },
-  {
-    "value": "4.9 ★",
-    "label": "Rating"
-  },
-  {
-    "value": "15+",
-    "label": "Years Local"
-  },
-  {
-    "value": "1-Yr",
-    "label": "Warranty"
-  }
-];
-const meterTarget = 72;
-const meterTopLabel = "Peak";
-const meterMidLabel = "Local";
-const meterBotLabel = "Base";
-const particleColor = '#a8a29e';
-const beforeImageSrc = '/pages/home/welcome/before.jpg';
-const afterImageSrc = '/pages/home/welcome/after.jpg';
-const beforeLabel = "Slow drains";
-const afterLabel = "System healthy";
-const mapCenterLabel = 'Service HQ';
-const mapPins = [
-  { label: 'Waco', x: 42, y: 48 },
-  { label: 'Temple', x: 68, y: 62 },
-  { label: 'Killeen', x: 58, y: 72 },
-];
-const coverageLabel = 'Central Texas coverage';
-const materials = [
-  { name: "Pump-Out", swatch: "#0d9488", imageSrc: "/pages/home/welcome/mat-1.jpg" },
-  { name: "Inspect", swatch: "#14b8a6", imageSrc: "/pages/home/welcome/mat-2.jpg" },
-  { name: "Repair", swatch: "#2dd4bf", imageSrc: "/pages/home/welcome/mat-3.jpg" },
-  { name: "Aerobic", swatch: "#5eead4", imageSrc: "/pages/home/welcome/mat-1.jpg" },
-  { name: "Install", swatch: "#0f766e", imageSrc: "/pages/home/welcome/mat-2.jpg" },
-  { name: "Emergency", swatch: "#115e59", imageSrc: "/pages/home/welcome/mat-3.jpg" }
-];
-const quote = "Transparent about what needed repair vs what could wait. Pumped and fixed without the scare tactics.";
-const authorName = "Rural homeowner";
-const authorMeta = "Septic repair · McGregor";
-const rating = 5;
-const schematicLabel = "ClearFlow Septic schematic";
-const gauges = [
-  { label: "Systems", value: "2,600+" },
-  { label: "Rating", value: "4.8 ★" },
-  { label: "Reports", value: "Written" },
-  { label: "Rural", value: "Yes" }
-];
-const toggles = [
-  { label: "Licensed crew", on: true },
-  { label: "Same-week", on: true },
-  { label: "Warrantied", on: true }
-];
-const textureSrc = '/pages/home/welcome/hero-main.jpg';
-const textureAlt = 'Texture';
-const accentWord = "ClearFlow";
+  const badgeText = "Waco's Most Trusted Septic Pros — Since 2004";
+  const headlineLines = ['Systems Flowing.', 'Jobs Done Clean.'];
+  const headlineAccent = 'ClearFlow Septic.';
+  const subheadline =
+    'Pumping · Install · Repair · Aerobic Systems. Flat-rate pricing. Same-day service. Clean Job Guarantee · Emergency pump-out available. Serving Waco and Central Texas with TCEQ-licensed installers.';
+  const primaryCta = { label: 'Call (254) 870-7070', href: 'tel:+12548707070' };
+  const secondaryCta = { label: 'Free Estimate', href: '/contact' };
+  const chips = [
+    'Same-Day Service',
+    'Emergency Pump-Out',
+    'TCEQ-Licensed',
+    '15+ Yrs Local',
+    'Clean Job Guarantee',
+  ];
+  const mapCenterLabel = 'Service HQ';
+  const mapPins = [
+    { label: 'Waco', x: 42, y: 48 },
+    { label: 'Temple', x: 68, y: 62 },
+    { label: 'Killeen', x: 58, y: 72 },
+  ];
+  const coverageLabel = 'Central Texas coverage';
 
   return (
     <section className={styles.hero} aria-label="Hero">
@@ -201,7 +162,10 @@ const accentWord = "ClearFlow";
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             {headlineLines.map((line, i) => (
-              <React.Fragment key={i}>{line}<br /></React.Fragment>
+              <React.Fragment key={i}>
+                {line}
+                <br />
+              </React.Fragment>
             ))}
             <span className={styles.accentLine}>{headlineAccent}</span>
           </motion.h1>
