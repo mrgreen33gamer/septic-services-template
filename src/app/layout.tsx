@@ -1,7 +1,7 @@
 // src/app/layout.tsx
 // ClearFlow Septic — root layout
 import type { Metadata, Viewport } from "next";
-import { Barlow_Condensed, ABeeZee } from "next/font/google";
+import { Special_Elite, Roboto_Slab, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import "./globalVariables.scss";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -25,18 +25,25 @@ import reviews from "../../libs/local-db/reviews";
 
 config.autoAddCss = false;
 
-const barlowCondensed = Barlow_Condensed({
-  weight: ["400", "500", "600", "700", "800"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-barlow-condensed",
-});
-
-const aBeeZee = ABeeZee({
+const fontTitle = Special_Elite({
   weight: ["400"],
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-abeezee",
+  variable: "--font-title",
+});
+
+const fontHeader = Roboto_Slab({
+  weight: ["400","500","600","700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-header",
+});
+
+const fontBody = Source_Sans_3({
+  weight: ["400","500","600","700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
 });
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -49,8 +56,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit:  "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0d1b2a" },
-    { media: "(prefers-color-scheme: dark)",  color: "#0d1b2a" },
+    { media: "(prefers-color-scheme: light)", color: "#1c1917" },
+    { media: "(prefers-color-scheme: dark)",  color: "#1c1917" },
   ],
   colorScheme: "dark",
 };
@@ -216,7 +223,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${barlowCondensed.variable} ${aBeeZee.variable}`}
+      className={`${fontTitle.variable} ${fontHeader.variable} ${fontBody.variable}`}
     >
       <head>
         <script
@@ -229,7 +236,7 @@ export default function RootLayout({
           <Header />
         </ConditionalShell>
 
-        <NextTopLoader color="#065f46" showSpinner={false} />
+        <NextTopLoader color="#a8a29e" showSpinner={false} />
 
         <Suspense fallback={null}>
           <Analytics />
@@ -245,10 +252,10 @@ export default function RootLayout({
                   alignItems: "center",
                   width: "100%",
                   height: "100vh",
-                  background: "#0d1b2a",
+                  background: "#1c1917",
                 }}
               >
-                <PulseLoader size={50} color="#065f46" />
+                <PulseLoader size={50} color="#a8a29e" />
               </div>
             }
           >

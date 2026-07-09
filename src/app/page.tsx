@@ -35,36 +35,42 @@ export default function HomePage() {
       title: "Septic Pumping",
       body: "Scheduled and emergency septic tank pump-outs with thorough cleaning and inspection. We leave lids secured and the job site clean.",
       link: "/services/septic-pumping",
+      image: "/pages/home/services/service-1.jpg",
     },
     {
       icon: faHouseChimney,
       title: "New Septic Install",
       body: "Conventional and engineered septic system design and installation for new construction and full replacements across Central Texas.",
       link: "/services/septic-install",
+      image: "/pages/home/services/service-2.jpg",
     },
     {
       icon: faWater,
       title: "Aerobic Systems",
       body: "Aerobic treatment unit install, service, chlorination, and maintenance so your ATU stays in compliance and running right.",
       link: "/services/aerobic-systems",
+      image: "/pages/home/services/service-3.jpg",
     },
     {
       icon: faWrench,
       title: "Septic Repair",
       body: "Tank leaks, baffles, pumps, alarms, and distribution issues diagnosed and fixed with flat-rate written quotes.",
       link: "/services/septic-repair",
+      image: "/pages/home/services/service-4.jpg",
     },
     {
       icon: faSeedling,
       title: "Drain Field Repair",
       body: "Saturated, clogged, or failing drain fields restored or replaced with solutions sized for your soil and usage.",
       link: "/services/drain-field",
+      image: "/pages/home/services/service-1.jpg",
     },
     {
       icon: faClipboardCheck,
       title: "Inspections & Maintenance",
       body: "Real estate inspections, maintenance contracts, and preventative service to catch small issues before backups.",
       link: "/services/inspections",
+      image: "/pages/home/services/service-2.jpg",
     },
   ];
 
@@ -181,13 +187,7 @@ export default function HomePage() {
   return (
     <main className={styles.pageWrapper}>
       <WelcomePage />
-
       <TrustBar headline="14,000+ Central Texas systems serviced by ClearFlow Septic" />
-
-      <div className={styles.section}>
-        <ImpactMetrics metrics={metrics} cityName="Waco" />
-      </div>
-
       <div className={styles.section}>
         <ServiceCardComponent
           heading="Septic Services for Waco & Central Texas"
@@ -195,51 +195,46 @@ export default function HomePage() {
           cards={services}
         />
       </div>
-
+      <div className={styles.section}>
+        <ImpactMetrics metrics={metrics} cityName="Waco" />
+      </div>
       <div className={styles.section}>
         <WhyChooseUs cityName="Waco" features={whyFeatures} title="Why Homeowners Choose ClearFlow" />
       </div>
-
       <div className={styles.section}>
         <ProcessTimeline steps={processSteps} />
       </div>
-
-      <div className={styles.section}>
-        <WhatToExpect expectations={expectations} />
-      </div>
-
       <div className={styles.section}>
         <Testimonials testimonials={reviews} />
       </div>
-
+      <CTABanner
+        headline="Septic Problems Fixed Right."
+        subline="Pumping, inspections, repairs, and installs for rural Central Texas systems — honest findings, clean work."
+        primaryText="Call (254) 870-7070"
+        primaryLink="tel:+12548707070"
+        secondaryText="Schedule Pump-Out"
+        secondaryLink="/contact"
+      
+        imageSrc="/pages/home/welcome/hero-main.jpg"
+       />
       <div className={styles.section}>
         <GuaranteeSection />
       </div>
-
       <div className={styles.section}>
         <LocalServiceAreas cityName="Waco" areas={localAreas} title="Serving Waco & Central Texas" />
       </div>
-
+      <div className={styles.section}>
+        <WhatToExpect expectations={expectations} />
+      </div>
       <div className={styles.section}>
         <FAQ cityName="Waco" faq={faq} title="Septic Service FAQs" />
       </div>
-
       <div className={styles.section}>
         <BlogPreviewGrid />
       </div>
-
       <div className={styles.section}>
         <Variant4 title="Request Service or a Free Quote" cityName="Waco" slug="/" spot="home-form" formVariant={2} />
       </div>
-
-      <CTABanner
-        headline="Need Septic Service Today?"
-        subline="Same-day pump-outs available. Flat-rate pricing. Clean Job Guarantee · Emergency pump-out available."
-        primaryText="Call (254) 870-7070"
-        primaryLink="tel:+12548707070"
-        secondaryText="Book Online"
-        secondaryLink="/contact"
-      />
     </main>
   );
 }

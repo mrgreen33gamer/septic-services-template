@@ -31,3 +31,13 @@
     margin-bottom: 2rem;
   }
 }
+
+/* === UNIQUENESS IDENTITY LAYER — septic-services-template === */
+.pageWrapper {
+  /* brand page rhythm */
+}
+.section {
+  padding-top: clamp(3.8rem, 6vw, 5.8rem) !important;
+  padding-bottom: clamp(3.8rem, 6vw, 5.8rem) !important;
+}
+/* end identity layer */

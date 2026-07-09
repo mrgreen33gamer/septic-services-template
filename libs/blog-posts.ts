@@ -19,7 +19,7 @@ const ALL_POSTS: BlogPost[] = [
     category: 'Maintenance',
     date:     'July 3, 2026',
     readTime: 7,
-    imageSrc: '/pages/blogs/maintenance-plan.jpg',
+    imageSrc: '/pages/home/services/service-3.jpg',
     imageAlt: 'How often to pump a septic tank in Central Texas',
     featured: true,
   },
@@ -30,7 +30,7 @@ const ALL_POSTS: BlogPost[] = [
     category: 'Installation',
     date:     'June 24, 2026',
     readTime: 8,
-    imageSrc: '/pages/blogs/energy-savings.jpg',
+    imageSrc: '/pages/home/welcome/after.jpg',
     imageAlt: 'Aerobic vs conventional septic systems comparison for Texas homes',
   },
   {
@@ -40,7 +40,7 @@ const ALL_POSTS: BlogPost[] = [
     category: 'Repair',
     date:     'June 15, 2026',
     readTime: 6,
-    imageSrc: '/pages/blogs/ac-replacement.jpg',
+    imageSrc: '/pages/home/welcome/hero-main.jpg',
     imageAlt: 'Signs a septic system is failing in Central Texas',
   },
 ];
