@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     siteName: "ClearFlow Septic",
     images: [
       {
-        url: `${BASE_URL}/logos/scott-apps-banner.png?v=1`,
+        url: `${BASE_URL}/pages/home/welcome/hero-main.jpg`,
         width: 1200,
         height: 630,
         alt: "ClearFlow Septic — Waco TX Septic Pumping, Install & Repair",
@@ -111,7 +111,7 @@ export const metadata: Metadata = {
     title: "ClearFlow Septic | Waco TX Septic Pros",
     description:
       "Septic pumping, installs, aerobic systems, repair & inspections for Central Texas. TCEQ-licensed · Clean Job Guarantee.",
-    images: [`${BASE_URL}/logos/scott-apps-banner.png?v=1`],
+    images: [`${BASE_URL}/pages/home/welcome/hero-main.jpg`],
   },
   robots: {
     index: true,

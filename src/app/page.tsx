@@ -63,14 +63,14 @@ export default function HomePage() {
       title: "Drain Field Repair",
       body: "Saturated, clogged, or failing drain fields restored or replaced with solutions sized for your soil and usage.",
       link: "/services/drain-field",
-      image: "/pages/home/services/service-1.jpg",
+      image: "/pages/home/welcome/before.jpg",
     },
     {
       icon: faClipboardCheck,
       title: "Inspections & Maintenance",
       body: "Real estate inspections, maintenance contracts, and preventative service to catch small issues before backups.",
       link: "/services/inspections",
-      image: "/pages/home/services/service-2.jpg",
+      image: "/pages/home/welcome/after.jpg",
     },
   ];
 
