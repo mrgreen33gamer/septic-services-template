@@ -1,122 +1,27 @@
-// Septic Hero C — Topographic contours + dashed property-lot service radius
+// Septic Hero — ClearFlow (authentic field photography)
+// Photographic parallax stage + a real on-site technician card replaces the
+// topographic service-area schematic. Photos ship in /public/pages/home/welcome
+// and are now wired into the hero. Copy is unchanged from the approved template.
 'use client';
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
-import { PhoneIcon, ChevronIcon, CheckIcon, PinIcon } from './_shared/icons';
+import { PhoneIcon, ChevronIcon, CheckIcon } from './_shared/icons';
 import styles from './styles.module.scss';
 
-function ServiceAreaMap({
-  mapCenterLabel,
-  mapPins,
-  coverageLabel,
-}: {
-  mapCenterLabel: string;
-  mapPins: Array<{ label: string; x: number; y: number }>;
-  coverageLabel?: string;
-}) {
-  return (
-    <div
-      className={`${styles.mapCard} ${styles.topoMap}`}
-      role="img"
-      aria-label={`Service area map centered on ${mapCenterLabel}`}
-    >
-      <svg
-        className={styles.mapSvg}
-        viewBox="0 0 400 320"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden="true"
-      >
-        <defs>
-          <radialGradient id="septicGlow" cx="50%" cy="48%" r="55%">
-            <stop offset="0%" stopColor="rgba(20, 184, 166, 0.12)" />
-            <stop offset="60%" stopColor="rgba(13, 148, 136, 0.04)" />
-            <stop offset="100%" stopColor="rgba(0, 0, 0, 0)" />
-          </radialGradient>
-        </defs>
-
-        <rect width="400" height="320" fill="url(#septicGlow)" />
-
-        {/* Topographic contour lines */}
-        <g fill="none" stroke="rgba(148, 163, 184, 0.22)" strokeWidth="1.1">
-          <ellipse cx="200" cy="160" rx="40" ry="28" />
-          <ellipse cx="200" cy="160" rx="70" ry="48" />
-          <ellipse cx="200" cy="160" rx="105" ry="72" />
-          <ellipse cx="200" cy="160" rx="140" ry="96" />
-          <ellipse cx="200" cy="160" rx="175" ry="118" />
-        </g>
-        <g fill="none" stroke="rgba(20, 184, 166, 0.18)" strokeWidth="1">
-          <path d="M40 80 Q120 60 200 90 T360 70" />
-          <path d="M30 200 Q140 170 220 210 T380 190" />
-          <path d="M50 280 Q160 250 250 270 T390 260" />
-          <path d="M20 130 Q100 150 180 120 T340 140" />
-        </g>
-
-        {/* Dashed property lots / parcels in service radius */}
-        <g fill="none" stroke="rgba(255,255,255,0.14)" strokeWidth="1.15" strokeDasharray="5 4">
-          <rect x="90" y="90" width="70" height="55" />
-          <rect x="170" y="85" width="65" height="50" />
-          <rect x="245" y="95" width="70" height="55" />
-          <rect x="80" y="160" width="75" height="60" />
-          <rect x="165" y="155" width="80" height="65" />
-          <rect x="255" y="165" width="70" height="55" />
-          <rect x="100" y="230" width="85" height="45" />
-          <rect x="200" y="235" width="90" height="40" />
-        </g>
-
-        {/* Drainfield / tank glyphs on select lots */}
-        <rect x="185" y="175" width="28" height="14" rx="2" fill="none" stroke="rgba(20, 184, 166, 0.55)" strokeWidth="1.25" />
-        <line x1="185" y1="182" x2="213" y2="182" stroke="rgba(20, 184, 166, 0.35)" strokeWidth="1" />
-        <path d="M100 115 L120 115 M110 110 L110 120" stroke="rgba(20, 184, 166, 0.4)" strokeWidth="1.2" />
-        <path d="M270 125 L290 125 M280 120 L280 130" stroke="rgba(20, 184, 166, 0.4)" strokeWidth="1.2" />
-
-        {/* Service radius dashed ring */}
-        <circle
-          cx="200"
-          cy="160"
-          r="95"
-          fill="none"
-          stroke="rgba(20, 184, 166, 0.4)"
-          strokeWidth="1.5"
-          strokeDasharray="8 6"
-        />
-      </svg>
-
-      <div className={`${styles.rings} ${styles.tealRings}`} aria-hidden="true">
-        <span className={`${styles.ring} ${styles.ring1}`} />
-        <span className={`${styles.ring} ${styles.ring2}`} />
-        <span className={`${styles.ring} ${styles.ring3}`} />
-      </div>
-
-      <div className={styles.centerPin}>
-        <div className={`${styles.centerPinIcon} ${styles.tealHub}`}>
-          <PinIcon size={20} />
-        </div>
-        <span className={styles.centerLabel}>{mapCenterLabel}</span>
-      </div>
-
-      {mapPins.map((pin) => (
-        <div
-          key={`${pin.label}-${pin.x}-${pin.y}`}
-          className={styles.satPin}
-          style={{ left: `${pin.x}%`, top: `${pin.y}%` }}
-        >
-          <span className={`${styles.satDot} ${styles.tealDot}`} />
-          <span className={styles.satLabel}>{pin.label}</span>
-        </div>
-      ))}
-
-      {coverageLabel && (
-        <div className={`${styles.coverageBadge} ${styles.tealBadge}`}>
-          <span className={`${styles.coverageDot} ${styles.tealDot}`} />
-          {coverageLabel}
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function WelcomePage() {
+  const reduceMotion = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Scroll-linked parallax on the background photo. Disabled under reduced-motion.
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', reduceMotion ? '0%' : '16%']);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.08, reduceMotion ? 1.08 : 1.16]);
+
   const badgeText = "Waco's Most Trusted Septic Pros — Since 2004";
   const headlineLines = ['Systems Flowing.', 'Jobs Done Clean.'];
   const headlineAccent = 'ClearFlow Septic.';
@@ -131,17 +36,26 @@ export default function WelcomePage() {
     '15+ Yrs Local',
     'Clean Job Guarantee',
   ];
-  const mapCenterLabel = 'Service HQ';
-  const mapPins = [
-    { label: 'Waco', x: 42, y: 48 },
-    { label: 'Temple', x: 68, y: 62 },
-    { label: 'Killeen', x: 58, y: 72 },
-  ];
-  const coverageLabel = 'Central Texas coverage';
 
   return (
-    <section className={styles.hero} aria-label="Hero">
-      <div className={styles.shard} aria-hidden="true" />
+    <section ref={heroRef} className={styles.hero} aria-label="Hero">
+      {/* Photographic parallax background — real field / jobsite scene */}
+      <motion.div
+        className={styles.bgLayer}
+        style={{ y: bgY, scale: bgScale }}
+        aria-hidden="true"
+      >
+        <Image
+          src="/pages/home/welcome/hero-septic-bg.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className={styles.bgImage}
+        />
+      </motion.div>
+      {/* Brand scrim keeps the headline legible and on-brand over the photo */}
+      <div className={styles.scrim} aria-hidden="true" />
 
       <div className={styles.layout}>
         <div className={styles.content}>
@@ -207,17 +121,38 @@ export default function WelcomePage() {
           </motion.div>
         </div>
 
+        {/* Authentic on-site technician photo — the ownable image, framed as a spec card */}
         <motion.div
           className={styles.visual}
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.28, ease: 'easeOut' }}
         >
-          <ServiceAreaMap
-            mapCenterLabel={mapCenterLabel}
-            mapPins={mapPins}
-            coverageLabel={coverageLabel}
-          />
+          <div className={styles.photoCard}>
+            <Image
+              src="/pages/home/welcome/hero-septic-service.jpg"
+              alt="ClearFlow Septic technician setting a concrete septic tank during a residential backyard installation"
+              fill
+              priority
+              sizes="(max-width: 960px) 88vw, 460px"
+              className={styles.photo}
+            />
+            <div className={styles.photoGlaze} aria-hidden="true" />
+
+            <div className={styles.photoBadge}>
+              <span className={styles.photoBadgeDot} />
+              TCEQ-Licensed · On-Site
+            </div>
+
+            <div className={styles.specCard}>
+              <span className={styles.specRow}>
+                <CheckIcon size={10} /> Flat-rate pricing
+              </span>
+              <span className={styles.specRow}>
+                <CheckIcon size={10} /> Clean Job Guarantee
+              </span>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
